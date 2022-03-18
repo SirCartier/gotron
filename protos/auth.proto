@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "./auth";
+
+message UserCredentials {
+    string key = 1;
+    string hwid = 2;
+}
+
+message UserProfile {
+    string username = 1;
+    string avatar = 2;
+    string discord_id = 3;
+}
+
+message AuthResponse {
+    bool success = 1;
+    UserProfile user = 2;
+}
+
+service AuthService {
+    rpc VerifyKey (UserCredentials) returns (AuthResponse);
+}
